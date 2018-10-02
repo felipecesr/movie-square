@@ -1,10 +1,12 @@
 module.exports = {
   root: true,
   env: {
-    node: true
+    node: true,
+    jest: true
   },
-  'extends': [
+  extends: [
     'plugin:vue/essential',
+    'plugin:vue/recommended',
     'eslint:recommended'
   ],
   rules: {
@@ -14,4 +16,4 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint'
   }
-}
+};

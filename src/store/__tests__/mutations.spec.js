@@ -11,4 +11,15 @@ describe('mutations', () => {
 
     expect(state.movies).toEqual(data);
   });
+
+  it('increment +1 when RECEIVE_MOVIES_SUCCESS was called', () => {
+    const state = {
+      page: 0,
+      movies: []
+    };
+
+    mutations[types.RECEIVE_MOVIES_SUCCESS](state, { data: [] });
+
+    expect(state.page).toEqual(1);
+  });
 });

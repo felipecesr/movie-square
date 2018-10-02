@@ -10,10 +10,10 @@ describe('actions', () => {
     expect.assertions(1);
 
     const data = [{}, {}];
-    const type = 'movie';
+    const page = 1;
 
     fetchListData.mockImplementation(calledWith => {
-      return calledWith === type ? Promise.resolve(data) : Promise.resolve();
+      return calledWith === page ? Promise.resolve(data) : Promise.resolve();
     });
 
     const context = {
@@ -32,17 +32,17 @@ describe('actions', () => {
     expect.assertions(2);
 
     const data = [{}, {}];
-    const type = 'movie';
 
-    fetchListData.mockImplementation(calledWith => {
-      return calledWith === type ? Promise.resolve(data) : Promise.resolve();
-    });
+    fetchListData.mockImplementation(() => Promise.resolve(data));
 
     const context = {
+      state: {
+        page: 1
+      },
       dispatch: jest.fn()
     };
 
-    actions.fetchMovies(context, { type });
+    actions.fetchMovies(context);
     await flushPromises();
 
     expect(context.dispatch).toHaveBeenCalledWith('requestMovies');

@@ -6,6 +6,8 @@ import mutations from './mutations';
 Vue.use(Vuex);
 
 const state = {
+  page: 1,
+
   movies: []
 };
 

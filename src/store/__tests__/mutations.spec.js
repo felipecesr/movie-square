@@ -5,10 +5,10 @@ describe('mutations', () => {
   it('RECEIVE_MOVIES_SUCCESS sets state.movies to data', () => {
     const data = [{ id: 1 }, { id: 2 }];
 
-    const state = [];
+    const state = { movies: [] };
 
     mutations[types.RECEIVE_MOVIES_SUCCESS](state, { data });
 
-    expect(state.movies).toBe(data);
+    expect(state.movies).toEqual(data);
   });
 });

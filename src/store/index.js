@@ -8,7 +8,9 @@ Vue.use(Vuex);
 const state = {
   page: 1,
 
-  movies: []
+  movies: [],
+
+  maxPage: null
 };
 
 export default new Vuex.Store({

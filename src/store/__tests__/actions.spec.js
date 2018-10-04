@@ -6,6 +6,8 @@ import * as types from '../mutation-types';
 jest.mock('@/services/api');
 
 describe('actions', () => {
+  afterEach(() => fetchListData.mockClear());
+
   it('receiveMoviesSuccess calls commit with the result of fetchListData', async () => {
     expect.assertions(1);
 
@@ -47,5 +49,19 @@ describe('actions', () => {
 
     expect(context.dispatch).toHaveBeenCalledWith('requestMovies');
     expect(context.dispatch).toHaveBeenCalledWith('receiveMoviesSuccess', { data });
+  });
+
+  it('if state page >= maxPage fetchMovies can not be call by fetchListData', () => {
+    const context = {
+      state: {
+        page: 11,
+        maxPage: 10
+      },
+      dispatch: jest.fn()
+    };
+
+    actions.fetchMovies(context);
+
+    expect(fetchListData).not.toHaveBeenCalled();
   });
 });

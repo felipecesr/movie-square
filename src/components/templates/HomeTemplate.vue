@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import PageHeader from '@/components/organisms/PageHeader.vue';
-import MovieList from '@/components/organisms/MovieList.vue';
+import PageHeader from '@organisms/PageHeader.vue';
+import MovieList from '@organisms/MovieList.vue';
 
 export default {
   components: {

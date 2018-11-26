@@ -9,7 +9,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import MovieItem from "@/components/molecules/MovieItem.vue";
+import MovieItem from "@molecules/MovieItem.vue";
 
 export default {
   components: { MovieItem },

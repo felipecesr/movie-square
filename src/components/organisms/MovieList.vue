@@ -9,18 +9,48 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import MovieItem from "@/components/molecules/MovieItem.vue";
+import MovieItem from "@molecules/MovieItem.vue";
 
 export default {
   components: { MovieItem },
 
-  computed: mapState(['movies']),
-
-  beforeMount() {
-    this.fetchMovies({ type: 'movie' });
+  data() {
+    return {
+      bottom: false
+    };
   },
 
-  methods: mapActions(['fetchMovies'])
+  computed: mapState(['movies']),
+
+  watch: {
+    bottom(bottom) {
+      if (bottom) {
+        this.fetchMovies();
+      }
+    }
+  },
+
+  created() {
+    window.addEventListener('scroll', () => {
+      this.bottom = this.bottomVisible();
+    })
+  },
+
+  beforeMount() {
+    this.fetchMovies();
+  },
+
+  methods: {
+    ...mapActions(['fetchMovies']),
+
+    bottomVisible() {
+      const scrollY = window.scrollY;
+      const visible = document.documentElement.clientHeight;
+      const pageHeight = document.documentElement.scrollHeight;
+      const bottomOfPage = visible + scrollY >= pageHeight;
+      return bottomOfPage || pageHeight < visible;
+    }
+  }
 };
 </script>
 

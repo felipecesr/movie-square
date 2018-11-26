@@ -14,6 +14,6 @@ const config = {
 
 const _axios = axios.create(config);
 
-export function fetchListData(type) {
-  return _axios.get(`/${type}/popular`).then(data => data.data.results);
+export function fetchListData({ page }) {
+  return _axios.get(`/movie/popular`, { params: { page } }).then(data => data.data);
 }

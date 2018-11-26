@@ -6,7 +6,11 @@ import mutations from './mutations';
 Vue.use(Vuex);
 
 const state = {
-  movies: []
+  page: 1,
+
+  movies: [],
+
+  maxPage: null
 };
 
 export default new Vuex.Store({

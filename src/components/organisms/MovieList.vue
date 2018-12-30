@@ -14,41 +14,37 @@ import MovieItem from "@molecules/MovieItem.vue";
 export default {
   components: { MovieItem },
 
-  data() {
-    return {
-      bottom: false
-    };
-  },
-
   computed: mapState(['movies']),
-
-  watch: {
-    bottom(bottom) {
-      if (bottom) {
-        this.fetchMovies();
-      }
-    }
-  },
-
-  created() {
-    window.addEventListener('scroll', () => {
-      this.bottom = this.bottomVisible();
-    })
-  },
 
   beforeMount() {
     this.fetchMovies();
   },
 
+  mounted() {
+    this.scroll();
+  },
+
   methods: {
     ...mapActions(['fetchMovies']),
 
-    bottomVisible() {
-      const scrollY = window.scrollY;
-      const visible = document.documentElement.clientHeight;
-      const pageHeight = document.documentElement.scrollHeight;
-      const bottomOfPage = visible + scrollY >= pageHeight;
-      return bottomOfPage || pageHeight < visible;
+    bottomOfWindow([scrollTop, innerHeight, offsetHeight], cb) {
+      const isBottom = Math.round(scrollTop + innerHeight) === offsetHeight;
+
+      if (isBottom) {
+        cb();
+      }
+    },
+
+    scroll() {
+      window.onscroll = () => {
+        const arr = [
+          document.documentElement.scrollTop,
+          window.innerHeight,
+          document.documentElement.offsetHeight
+        ];
+
+        this.bottomOfWindow(arr, this.fetchMovies);
+      }
     }
   }
 };

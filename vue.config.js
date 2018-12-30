@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   baseUrl: process.env.NODE_ENV === 'production' ? '/movie-square/' : '/',
   configureWebpack: {
+    devtool: 'source-map',
     resolve: {
       alias: {
         '@atoms': path.join(__dirname, 'src/components/atoms/'),

@@ -1,29 +1,38 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import MovieList from '../MovieList.vue';
-import MovieItem from '../../molecules/MovieItem.vue';
+import MovieList from '@organisms/MovieList.vue';
+import MovieItem from '@molecules/MovieItem.vue';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe('MovieList.vue', () => {
-  it('renders a MovieItem with data for each item in movies', () => {
-    const movies = [{}, {}, {}];
+  const movies = [{}, {}, {}];
+  const fetchMovies = jest.fn(() => Promise.resolve());
+  const store = new Vuex.Store({
+    state: {
+      movies
+    },
+    actions: { fetchMovies }
+  });
 
-    const store = new Vuex.Store({
-      state: {
-        movies
-      },
-      actions: {
-        fetchMovies: jest.fn(() => Promise.resolve())
-      }
-    });
+  it('should call scroll method when MovieList is mounted', () => {
+    const scroll = jest.fn();
 
-    const wrapper = shallowMount(MovieList, {
+    shallowMount(MovieList, {
+      methods: { scroll },
       localVue,
       store
     });
 
+    expect(scroll).toHaveBeenCalled();
+  });
+
+  it('renders a MovieItem with data for each item in movies', () => {
+    const wrapper = shallowMount(MovieList, {
+      localVue,
+      store
+    });
     const MovieItems = wrapper.findAll(MovieItem);
 
     expect(MovieItems).toHaveLength(movies.length);
@@ -33,26 +42,17 @@ describe('MovieList.vue', () => {
     });
   });
 
-  it('should call fetchMovies when bottom value change for true', () => {
-    const movies = [{}, {}, {}];
-    const fetchMovies = jest.fn(() => Promise.resolve());
-    const store = new Vuex.Store({
-      state: {
-        movies
-      },
-      actions: { fetchMovies }
-    });
-
+  it('should call callback function when numbers combination are true', () => {
     const wrapper = shallowMount(MovieList, {
       localVue,
       store
     });
 
-    wrapper.setData({ bottom: true });
-    wrapper.setData({ bottom: false });
+    const cb = jest.fn();
 
-    expect(fetchMovies).toHaveBeenCalledTimes(2);
+    wrapper.vm.bottomOfWindow([1, 2, 3], cb);
+    wrapper.vm.bottomOfWindow([4, 5, 6], cb);
+
+    expect(cb).toHaveBeenCalledTimes(1);
   });
-
-  it('should call bottomVisible when page scrolled', () => {});
 });

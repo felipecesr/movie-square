@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? '/movie-square/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/movie-square/' : '/',
   configureWebpack: {
     devtool: 'source-map',
     resolve: {

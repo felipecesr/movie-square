@@ -19,7 +19,7 @@ describe('MovieItem.vue', () => {
     expect(a.attributes().title).toBe(item.title);
   });
 
-  it('renders a img with item.poster_path as src and item.title as alt', () => {
+  it('renders a img with item.poster_path as data-src and item.title as alt', () => {
     const item = {
       title: 'Avengers: Infinity War',
       poster_path: '/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg'
@@ -28,7 +28,7 @@ describe('MovieItem.vue', () => {
     const wrapper = createWrapper(item);
     const img = wrapper.find('img');
 
-    expect(img.attributes().src).toBe(
+    expect(img.attributes('data-src')).toBe(
       config.base_url + config.size + item.poster_path
     );
     expect(img.attributes().alt).toBe(item.title);

@@ -4,8 +4,8 @@ exports[`HomeTemplate.vue renders correctly 1`] = `
 <div
   class="home"
 >
-  <pageheader-stub />
+  <page-header-stub />
    
-  <movielist-stub />
+  <movie-list-stub />
 </div>
 `;

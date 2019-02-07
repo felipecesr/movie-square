@@ -16,16 +16,16 @@ describe('MovieList.vue', () => {
     actions: { fetchMovies }
   });
 
-  it('should call scroll method when MovieList is mounted', () => {
-    const scroll = jest.fn();
+  it('should call fetchMovies method when MovieList is mounted', () => {
+    const fetchMovies = jest.fn();
 
     shallowMount(MovieList, {
-      methods: { scroll },
+      methods: { fetchMovies },
       localVue,
       store
     });
 
-    expect(scroll).toHaveBeenCalled();
+    expect(fetchMovies).toHaveBeenCalled();
   });
 
   it('renders a MovieItem with data for each item in movies', () => {
@@ -40,19 +40,5 @@ describe('MovieList.vue', () => {
     MovieItems.wrappers.forEach((wrapper, index) => {
       expect(wrapper.vm.item).toBe(movies[index]);
     });
-  });
-
-  it('should call callback function when numbers combination are true', () => {
-    const wrapper = shallowMount(MovieList, {
-      localVue,
-      store
-    });
-
-    const cb = jest.fn();
-
-    wrapper.vm.bottomOfWindow([1, 2, 3], cb);
-    wrapper.vm.bottomOfWindow([4, 5, 6], cb);
-
-    expect(cb).toHaveBeenCalledTimes(1);
   });
 });

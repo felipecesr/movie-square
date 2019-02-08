@@ -16,6 +16,8 @@ describe('MovieList.vue', () => {
     actions: { fetchMovies }
   });
 
+  // clean fetchMovies
+
   it('should call fetchMovies method when MovieList is mounted', () => {
     const fetchMovies = jest.fn();
 

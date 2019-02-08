@@ -4,41 +4,25 @@
       v-for="item in movies"
       :key="item.id"
       :item="item"/>
+    <scroll-loader/>
   </ul>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import ScrollLoader from '@atoms/ScrollLoader.vue';
 import MovieItem from '@molecules/MovieItem.vue';
 
 export default {
-  components: { MovieItem },
+  components: { MovieItem, ScrollLoader },
 
   computed: mapState(['movies']),
 
-  beforeMount() {
+  mounted() {
     this.fetchMovies();
   },
 
-  mounted() {
-    window.addEventListener('scroll', this.scrollHandler, false);
-  },
-
-  destroyed() {
-    window.removeEventListener('scroll', this.scrollHandler, false);
-  },
-
-  methods: {
-    ...mapActions(['fetchMovies']),
-
-    scrollHandler() {
-      const isBottom = Math.round(document.documentElement.scrollTop + window.innerHeight) === document.documentElement.offsetHeight;
-
-      if (isBottom) {
-        this.fetchMovies();
-      }
-    }
-  }
+  methods: mapActions(['fetchMovies'])
 };
 </script>
 

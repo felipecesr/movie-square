@@ -1,7 +1,7 @@
 <template>
   <li>
-    <a
-      :href="item.id"
+    <router-link
+      :to="{ name: 'Details', params: { id: item.id } }"
       :title="item.title || item.name"
     >
       <img
@@ -10,7 +10,7 @@
         :alt="item.title || item.name"
       >
       <div style="padding-bottom: 150%;" />
-    </a>
+    </router-link>
   </li>
 </template>
 

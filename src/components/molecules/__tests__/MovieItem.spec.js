@@ -1,22 +1,30 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, RouterLinkStub } from '@vue/test-utils';
 import config from '@/util/config';
 import MovieItem from '@/components/molecules/MovieItem.vue';
 
 describe('MovieItem.vue', () => {
   const createWrapper = item =>
-    shallowMount(MovieItem, { propsData: { item } });
+    shallowMount(MovieItem, {
+      propsData: { item },
+      stubs: {
+        RouterLink: RouterLinkStub
+      }
+    });
 
-  it('renders a link to item.id with item.title as title', () => {
+  it('renders RouterLink to item.id with item.title as title', () => {
     const item = {
       id: '299536',
       title: 'Avengers: Infinity War'
     };
 
-    const wrapper = createWrapper(item);
-    const a = wrapper.find('a');
+    const to = {
+      name: 'Details',
+      params: { id: item.id }
+    };
 
-    expect(a.attributes().href).toBe(item.id);
-    expect(a.attributes().title).toBe(item.title);
+    const wrapper = createWrapper(item);
+    expect(wrapper.find(RouterLinkStub).props().to).toEqual(to);
+    expect(wrapper.find(RouterLinkStub).attributes().title).toBe(item.title);
   });
 
   it('renders a img with item.poster_path as data-src and item.title as alt', () => {

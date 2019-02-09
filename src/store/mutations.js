@@ -2,14 +2,25 @@ import * as types from './mutation-types';
 
 export default {
   [types.REQUEST_MOVIES](state) {
-    state.loading = true;
+    state.isLoading = true;
     state.page += 1;
   },
   [types.RECEIVE_MOVIES_SUCCESS](state, { results }) {
     state.movies = [...state.movies, ...results];
-    state.loading = false;
+    state.isLoading = false;
   },
   [types.REQUEST_MOVIES_ERROR](state) {
-    state.loading = false;
+    state.isLoading = false;
+  },
+
+  [types.REQUEST_MOVIE](state) {
+    state.isLoading = true;
+  },
+  [types.REQUEST_MOVIE_ERROR](state) {
+    state.isLoading = false;
+  },
+
+  [types.SET_SELECTED_MOVIE](state, id) {
+    state.selectedMovieId = id;
   }
 };

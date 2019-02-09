@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <page-header/>
-    <movie-list/>
+    <div class="full hide-scroll">
+      <movie-list/>
+    </div>
   </div>
 </template>
 
@@ -19,9 +21,23 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+  padding: 3.3rem 0;
   display: grid;
-  grid-column: 1 / -1;
-  grid-gap: 30px;
-  padding: 0 36px;
+  grid-gap: var(--gutter) 0;
+  grid-template-columns: var(--gutter) 1fr var(--gutter);
+  align-content: start;
+
+  > * {
+    grid-column: 2 / -2;
+  }
+
+  > .full {
+    grid-column: 1 / -1;
+  }
+}
+
+.hide-scroll {
+  overflow-y: hidden;
+  margin-bottom: calc(-.1 * var(--gutter));
 }
 </style>

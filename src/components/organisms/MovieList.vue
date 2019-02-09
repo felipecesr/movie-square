@@ -29,8 +29,19 @@ export default {
 <style lang="scss" scoped>
 ul {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  list-style: none;
+  grid-template-columns: 10px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(50% - var(--gutter) * 2);
+
+  overflow-x: scroll;
+  scroll-snap-type: x proximity;
+  padding-bottom: calc(.75 * var(--gutter));
+  margin-bottom: calc(-.25 * var(--gutter));
+
+  &:before {
+    content: '';
+    width: 10px;
+  }
 }
 </style>

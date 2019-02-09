@@ -8,10 +8,11 @@ Vue.use(Vuex);
 
 const state = {
   movies: [],
+  selectedMovieId: null,
 
   page: 0,
 
-  loading: false,
+  isLoading: false,
   error: null
 };
 

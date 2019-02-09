@@ -13,7 +13,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-  padding-top: 3.3rem;
-}
+
 </style>

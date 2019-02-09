@@ -6,6 +6,10 @@ exports[`HomeTemplate.vue renders correctly 1`] = `
 >
   <page-header-stub />
    
-  <movie-list-stub />
+  <div
+    class="full hide-scroll"
+  >
+    <movie-list-stub />
+  </div>
 </div>
 `;

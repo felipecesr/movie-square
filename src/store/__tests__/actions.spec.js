@@ -33,9 +33,11 @@ describe('actions', () => {
   it('fetchMovies calls dispatch with the result of fetchListData', async () => {
     expect.assertions(2);
 
-    const data = [{}, {}];
+    const data = {
+      results: [{}, {}]
+    };
 
-    fetchListData.mockImplementation(() => Promise.resolve(data));
+    fetchListData.mockImplementation(() => Promise.resolve({ data }));
 
     const context = {
       state: {
@@ -48,20 +50,6 @@ describe('actions', () => {
     await flushPromises();
 
     expect(context.dispatch).toHaveBeenCalledWith('requestMovies');
-    expect(context.dispatch).toHaveBeenCalledWith('receiveMoviesSuccess', { data });
-  });
-
-  it('if state page >= maxPage fetchMovies can not be call by fetchListData', () => {
-    const context = {
-      state: {
-        page: 11,
-        maxPage: 10
-      },
-      dispatch: jest.fn()
-    };
-
-    actions.fetchMovies(context);
-
-    expect(fetchListData).not.toHaveBeenCalled();
+    expect(context.dispatch).toHaveBeenCalledWith('receiveMoviesSuccess', data);
   });
 });

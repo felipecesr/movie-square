@@ -30,6 +30,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+li {
+  scroll-snap-align: center;
+}
+
 a {
   display: block;
   position: relative;

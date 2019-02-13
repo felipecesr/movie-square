@@ -2,15 +2,17 @@ import * as getters from '../getters';
 
 describe('getters', () => {
   it('selectedMovie returns a movie with id equal selectedMovieId', () => {
-    const movie1 = { id: 1412, name: 'Arrow' };
-    const movie2 = { id: 60735, name: 'The Flash' };
+    const movies = {
+      1412: { id: 1412, name: 'Arrow' },
+      60735: { id: 60735, name: 'The Flash' }
+    };
 
     const state = {
-      movies: [movie1, movie2],
-      selectedMovieId: movie1.id
+      movies,
+      selectedMovieId: 1412
     };
 
     const result = getters.selectedMovie(state);
-    expect(result).toBe(movie1);
+    expect(result).toBe(movies[1412]);
   });
 });

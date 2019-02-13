@@ -16,10 +16,10 @@ describe('mutations', () => {
 
   it('RECEIVE_MOVIES_SUCCESS sets state.movies to data', () => {
     const data = {
-      results: [{ id: 1 }, { id: 2 }]
+      results: { '1': {}, '2': {} }
     };
 
-    const state = { movies: [] };
+    const state = { movies: {} };
 
     mutations[types.RECEIVE_MOVIES_SUCCESS](state, data);
 

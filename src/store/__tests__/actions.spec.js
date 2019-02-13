@@ -1,20 +1,23 @@
 import flushPromises from 'flush-promises';
-import { fetchListData } from '@/services/api';
+import { getAll } from '@/services/movieService';
 import * as actions from '../actions';
 import * as types from '../mutation-types';
 
-jest.mock('@/services/api');
+jest.mock('@/services/movieService');
 
 describe('actions', () => {
-  afterEach(() => fetchListData.mockClear());
+  afterEach(() => getAll.mockClear());
 
-  it('receiveMoviesSuccess calls commit with the result of fetchListData', async () => {
+  it('receiveMoviesSuccess calls commit with the result of getAll', async () => {
     expect.assertions(1);
 
-    const data = [{}, {}];
+    const data = {
+      results: { '1': {}, '2': {} }
+    };
+
     const page = 1;
 
-    fetchListData.mockImplementation(calledWith => {
+    getAll.mockImplementation(calledWith => {
       return calledWith === page ? Promise.resolve(data) : Promise.resolve();
     });
 
@@ -22,22 +25,23 @@ describe('actions', () => {
       commit: jest.fn()
     };
 
-    actions.receiveMoviesSuccess(context, { data });
+    actions.receiveMoviesSuccess(context, data);
     await flushPromises();
 
-    expect(context.commit).toHaveBeenCalledWith(types.RECEIVE_MOVIES_SUCCESS, {
+    expect(context.commit).toHaveBeenCalledWith(
+      types.RECEIVE_MOVIES_SUCCESS,
       data
-    });
+    );
   });
 
-  it('fetchMovies calls dispatch with the result of fetchListData', async () => {
+  it('fetchMovies calls dispatch with the result of getAll', async () => {
     expect.assertions(2);
 
     const data = {
-      results: [{}, {}]
+      results: { '1': {}, '2': {} }
     };
 
-    fetchListData.mockImplementation(() => Promise.resolve({ data }));
+    getAll.mockImplementation(() => Promise.resolve(data));
 
     const context = {
       state: {

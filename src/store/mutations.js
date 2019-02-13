@@ -6,17 +6,10 @@ export default {
     state.page += 1;
   },
   [types.RECEIVE_MOVIES_SUCCESS](state, { results }) {
-    state.movies = [...state.movies, ...results];
+    state.movies = { ...state.movies, ...results };
     state.isLoading = false;
   },
   [types.REQUEST_MOVIES_ERROR](state) {
-    state.isLoading = false;
-  },
-
-  [types.REQUEST_MOVIE](state) {
-    state.isLoading = true;
-  },
-  [types.REQUEST_MOVIE_ERROR](state) {
     state.isLoading = false;
   },
 

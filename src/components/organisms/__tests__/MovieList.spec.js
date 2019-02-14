@@ -7,37 +7,79 @@ const localVue = createLocalVue();
 localVue.use(Vuex);
 
 describe('MovieList.vue', () => {
-  const movies = [{}, {}, {}];
-  const fetchMovies = jest.fn(() => Promise.resolve());
-  const store = new Vuex.Store({
-    state: {
-      movies
-    },
-    actions: { fetchMovies }
-  });
+  const fetchPopularList = jest.fn(() => Promise.resolve());
 
-  // clean fetchMovies
+  function createStore(overrides) {
+    const defaultConfig = {
+      state: {
+        movies: {}
+      },
+      actions: { fetchPopularList }
+    };
+    return new Vuex.Store(
+      Object.assign(defaultConfig, overrides)
+    );
+  }
 
-  it('should call fetchMovies method when MovieList is mounted', () => {
-    const fetchMovies = jest.fn();
+  // clean fetchPopularList
 
+  it('should call fetchPopularList method when MovieList is mounted', () => {
+    const fetchPopularList = jest.fn();
+
+    const store = createStore({
+      state: {
+        movies: {}
+      }
+    });
     shallowMount(MovieList, {
-      methods: { fetchMovies },
+      methods: { fetchPopularList },
       localVue,
       store
     });
 
-    expect(fetchMovies).toHaveBeenCalled();
+    expect(fetchPopularList).toHaveBeenCalled();
+  });
+
+  it('should not call fetchPopularList when movies is not empty', () => {
+    const fetchPopularList = jest.fn();
+
+    const store = createStore({
+      state: {
+        movies: {
+          '1': {},
+          '2': {},
+          '3': {}
+        }
+      }
+    });
+
+    shallowMount(MovieList, {
+      methods: { fetchPopularList },
+      localVue,
+      store
+    });
+
+    expect(fetchPopularList).not.toHaveBeenCalled();
   });
 
   it('renders a MovieItem with data for each item in movies', () => {
+    const movies = {
+      0: {},
+      1: {},
+      2: {}
+    };
+
+    const store = createStore({
+      state: { movies }
+    });
+
     const wrapper = shallowMount(MovieList, {
       localVue,
       store
     });
     const MovieItems = wrapper.findAll(MovieItem);
 
-    expect(MovieItems).toHaveLength(movies.length);
+    expect(MovieItems).toHaveLength(Object.keys(movies).length);
 
     MovieItems.wrappers.forEach((wrapper, index) => {
       expect(wrapper.vm.item).toBe(movies[index]);

@@ -19,10 +19,12 @@ export default {
   computed: mapState(['movies']),
 
   mounted() {
-    this.fetchMovies();
+    if (!Object.keys(this.movies).length) {
+      this.fetchPopularList();
+    }
   },
 
-  methods: mapActions(['fetchMovies'])
+  methods: mapActions(['fetchPopularList'])
 };
 </script>
 

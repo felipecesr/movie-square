@@ -23,13 +23,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(['fetchMovies']),
+    ...mapActions(['fetchPopularList']),
 
     handleObserver([ entry ]) {
       const x = entry.boundingClientRect.x;
 
       if (this.prevX > x) {
-        this.fetchMovies();
+        this.fetchPopularList();
       }
 
       this.prevX = x;

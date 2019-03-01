@@ -12,7 +12,8 @@
 
     <movie-seasons
       :serie="movie.id"
-      :seasons="movie.seasons" />
+      :seasons="movie.seasons"
+    />
   </div>
 </template>
 

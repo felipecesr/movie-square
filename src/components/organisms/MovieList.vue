@@ -19,7 +19,7 @@ export default {
   computed: mapState(['movies']),
 
   mounted() {
-    if (!Object.keys(this.movies).length) {
+    if (!this.movies.length) {
       this.fetchPopularList();
     }
   },

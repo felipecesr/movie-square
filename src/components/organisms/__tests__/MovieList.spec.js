@@ -28,7 +28,7 @@ describe('MovieList.vue', () => {
 
     const store = createStore({
       state: {
-        movies: {}
+        movies: []
       }
     });
     shallowMount(MovieList, {
@@ -45,11 +45,7 @@ describe('MovieList.vue', () => {
 
     const store = createStore({
       state: {
-        movies: {
-          '1': {},
-          '2': {},
-          '3': {}
-        }
+        movies: [ {}, {}, {} ]
       }
     });
 

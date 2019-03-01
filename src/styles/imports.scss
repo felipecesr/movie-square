@@ -2,24 +2,22 @@
   --gutter: 20px;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@font-face {
+  font-family: 'Campton';
+  src: url('~@/assets/fonts/campton-light.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Butler';
+  src: url('~@/assets/fonts/butler_regular.woff') format('woff');
+}
+
+@import '~@/styles/global/reset';
+@import '~@/styles/global/colors';
+@import '~@/styles/global/breakpoints';
+@import '~@/styles/global/typography';
 
 html,
 body {
   height: 100%;
 }
-
-html {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  font-size: 62.5%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-

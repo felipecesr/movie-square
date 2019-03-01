@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VHero.vue renders correctly 1`] = `
+<img
+  alt="299536"
+  src="Avengers: Infinity War"
+/>
+`;

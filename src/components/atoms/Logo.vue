@@ -1,14 +1,15 @@
 <template>
-  <img
-    class="logo"
-    src="@/assets/img/logo.svg"
-    alt="MovieSquare! logo">
+  <router-link :to="{ name: 'Home' }">
+    <img
+      class="logo"
+      src="@/assets/img/logo.svg"
+      alt="MovieSquare! logo"
+    >
+  </router-link>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style lang="scss" scoped>

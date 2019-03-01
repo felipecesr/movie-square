@@ -1,9 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Logo.vue renders correctly 1`] = `
-<img
-  alt="MovieSquare! logo"
-  class="logo"
-  src="@/assets/img/logo.svg"
-/>
+<router-link
+  to="[object Object]"
+>
+  <img
+    alt="MovieSquare! logo"
+    class="logo"
+    src="@/assets/img/logo.svg"
+  />
+</router-link>
 `;

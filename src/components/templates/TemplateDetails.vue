@@ -1,11 +1,11 @@
 <template>
   <div>
     <page-header />
-    <img
+    <v-hero
       :src="movie.backdrop_path | imageHost"
       :alt="movie.title || movie.name"
-    >
-    <h1>{{ movie.title || movie.name }}</h1>
+    />
+    <v-title>{{ movie.title || movie.name }}</v-title>
     <p>{{ movie.overview }}</p>
 
     <h2>Episódios</h2>
@@ -18,11 +18,15 @@
 </template>
 
 <script>
+import VTitle from "@atoms/VTitle.vue";
+import VHero from "@atoms/VHero.vue";
 import PageHeader from "@organisms/PageHeader.vue";
 import MovieSeasons from "@organisms/MovieSeasons.vue";
 
 export default {
   components: {
+    VHero,
+    VTitle,
     PageHeader,
     MovieSeasons
   },

@@ -1,1 +1,1 @@
-export const selectedMovie = state => state.movies[state.selectedMovieId];
+export const selectedMovie = state => state.movies.find(movie => movie.id === state.selectedMovieId);

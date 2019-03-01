@@ -2,7 +2,6 @@ import flushPromises from 'flush-promises';
 import { getPopularList } from '@/services/api/series';
 import * as actions from '../actions';
 import * as t from '../mutation-types';
-import { normalize } from '../../util/utils';
 
 jest.mock('@/services/api/series');
 
@@ -59,11 +58,6 @@ describe('actions', () => {
 
     getPopularList.mockImplementation(() => Promise.resolve({ data }));
 
-    const obj = {
-      page: 1,
-      results: normalize(data.results)
-    };
-
     const context = {
       state: {
         page: 1
@@ -75,6 +69,6 @@ describe('actions', () => {
     await flushPromises();
 
     expect(context.dispatch).toHaveBeenCalledWith('requestPopularList');
-    expect(context.dispatch).toHaveBeenCalledWith('receivePopularListSuccess', obj);
+    expect(context.dispatch).toHaveBeenCalledWith('receivePopularListSuccess', data);
   });
 });

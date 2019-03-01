@@ -16,10 +16,10 @@ describe('mutations', () => {
 
   it('RECEIVE_POPULAR_LIST_SUCCESS sets state.movies to data', () => {
     const data = {
-      results: { '1': {}, '2': {} }
+      results: [{}, {}, {}]
     };
 
-    const state = { movies: {} };
+    const state = { movies: [] };
 
     mutations[types.RECEIVE_POPULAR_LIST_SUCCESS](state, data);
 

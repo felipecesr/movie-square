@@ -1,6 +1,5 @@
 import * as t from './mutation-types';
 import { getPopularList } from '@/services/api/series';
-import { normalize } from '../util/utils';
 
 /**
  * POPULAR LIST
@@ -15,8 +14,8 @@ export const fetchPopularList = async ({ dispatch, state }) => {
   const { page } = state;
   const { data } = await getPopularList(page);
   const obj = {
-    page,
-    results: normalize(data.results)
+    page: data.page,
+    results: data.results
   }
 
   try {

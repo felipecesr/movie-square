@@ -1,5 +1,5 @@
 export default {
-  movies: {},
+  movies: [],
   selectedMovieId: null,
 
   page: 0,

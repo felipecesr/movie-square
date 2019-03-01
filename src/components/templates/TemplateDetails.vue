@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{ name: 'Home' }">Voltar</router-link>
+    <page-header />
     <img
       :src="movie.backdrop_path | imageHost"
       :alt="movie.title || movie.name"
@@ -17,10 +17,12 @@
 </template>
 
 <script>
-import MovieSeasons from '@organisms/MovieSeasons.vue';
+import PageHeader from "@organisms/PageHeader.vue";
+import MovieSeasons from "@organisms/MovieSeasons.vue";
 
 export default {
   components: {
+    PageHeader,
     MovieSeasons
   },
 

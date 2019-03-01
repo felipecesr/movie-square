@@ -1,12 +1,12 @@
 <template>
   <template-details
-    v-if="selectedMovie"
-    :movie="selectedMovie"
+    v-if="serie"
+    :movie="serie"
   />
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { getDetails } from "../../services/api/series.js";
 import TemplateDetails from "@templates/TemplateDetails.vue";
 
 export default {
@@ -19,13 +19,22 @@ export default {
     }
   },
 
-  computed: mapGetters(["selectedMovie"]),
-
-  mounted() {
-    this.fetchMovie(this.id);
+  data() {
+    return {
+      serie: null
+    };
   },
 
-  methods: mapActions(["fetchMovie"])
+  mounted() {
+    this.fetchDetails();
+  },
+
+  methods: {
+    async fetchDetails() {
+      const { data } = await getDetails(this.id);
+      this.serie = data;
+    }
+  }
 };
 </script>
 

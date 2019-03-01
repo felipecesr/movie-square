@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HomeTemplate.vue renders correctly 1`] = `
+exports[`TemplateHome.vue renders correctly 1`] = `
 <div
   class="home"
 >

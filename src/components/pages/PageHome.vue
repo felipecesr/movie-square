@@ -1,13 +1,13 @@
 <template>
-  <home-template/>
+  <template-home />
 </template>
 
 <script>
-import HomeTemplate from '@templates/HomeTemplate.vue';
+import TemplateHome from "@templates/TemplateHome.vue";
 
 export default {
-  components: { HomeTemplate }
-}
+  components: { TemplateHome }
+};
 </script>
 
 <style>

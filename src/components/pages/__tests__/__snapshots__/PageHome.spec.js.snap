@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PageHome.vue renders correctly 1`] = `<home-template-stub />`;
+exports[`PageHome.vue renders correctly 1`] = `<template-home-stub />`;

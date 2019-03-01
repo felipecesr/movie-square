@@ -10,24 +10,24 @@
 
     <h2>Episódios</h2>
 
-    <ul v-if="details">
-      <li
-        v-for="season in seasons"
-        :key="season.id"
-      >{{ season.name }}</li>
-    </ul>
+    <movie-seasons
+      :serie="movie.id"
+      :seasons="movie.seasons" />
   </div>
 </template>
 
 <script>
-// import { getOne } from "@/services/movieService";
+import MovieSeasons from '@organisms/MovieSeasons.vue';
 
 export default {
+  components: {
+    MovieSeasons
+  },
+
   props: {
     movie: {
       required: true,
       type: Object
-      // validator: value => ["syncing", "synced", "error"].includes(value)
     }
   },
 
@@ -35,18 +35,6 @@ export default {
     return {
       details: null
     };
-  },
-
-  computed: {
-    seasons() {
-      return this.details.seasons;
-    }
-  },
-
-  mounted() {
-    // _axios
-    //   .get(`/tv/${this.movie.id}`)
-    //   .then(({ data }) => (this.details = data));
   }
 };
 </script>

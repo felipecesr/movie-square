@@ -7,7 +7,7 @@ export const getPopularList = page => {
 };
 
 export const getDetails = serieId => {
-  return api.get(`${resource}/${serieId}`);
+  return api.get(`${resource}/${serieId}`, { params: { append_to_response: 'videos' } });
 };
 
 export const getSeason = (serieId, number) => {
